@@ -1,0 +1,6 @@
+.vs/
+packages/
+Repository Pattern.Entity/bin/
+Repository Pattern.Entity/obj/
+Repository Pattern.Repository/bin/
+Repository Pattern.Repository/obj/
