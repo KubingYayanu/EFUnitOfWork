@@ -51,5 +51,18 @@ namespace Repository_Pattern.Repository
         {
             _dbSet.RemoveRange(entities);
         }
+
+        public void Update(TEntity entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void UpdateRange(IEnumerable<TEntity> entities)
+        {
+            foreach (var model in entities)
+            {
+                _context.Entry(model).State = EntityState.Modified;
+            }
+        }
     }
 }
