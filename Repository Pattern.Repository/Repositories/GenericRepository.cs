@@ -35,26 +35,31 @@ namespace Repository_Pattern.Repository
         public void Add(TEntity entity)
         {
             _dbSet.Add(entity);
+            SaveChanges();
         }
 
         public void AddRange(IEnumerable<TEntity> entities)
         {
             _dbSet.AddRange(entities);
+            SaveChanges();
         }
 
         public void Remove(TEntity entity)
         {
             _dbSet.Remove(entity);
+            SaveChanges();
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             _dbSet.RemoveRange(entities);
+            SaveChanges();
         }
 
         public void Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
+            SaveChanges();
         }
 
         public void UpdateRange(IEnumerable<TEntity> entities)
@@ -63,6 +68,12 @@ namespace Repository_Pattern.Repository
             {
                 _context.Entry(model).State = EntityState.Modified;
             }
+            SaveChanges();
+        }
+
+        private void SaveChanges()
+        {
+            _context.SaveChanges();
         }
     }
 }
