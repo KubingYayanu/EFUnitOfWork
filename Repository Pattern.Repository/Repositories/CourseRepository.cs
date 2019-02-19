@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace Repository_Pattern.Repository
 {
-    public class CourseRepository : GenericRepository<Course>, ICourseRepository
+    public class CourseRepository : GenericRepository<RepositoryPatternContext, Course>, ICourseRepository
     {
-        public CourseRepository(DbContext context)
-            : base(context)
+        public CourseRepository(IDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repository_Pattern.Entity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,11 +7,11 @@ using System.Linq.Expressions;
 
 namespace Repository_Pattern.Repository
 {
-    public abstract class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : class, new()
+    public abstract class GenericRepository<TDbContext, TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
-        public GenericRepository(DbContext context)
+        public GenericRepository(IDbContextFactory contextFactory)
         {
-            _context = context;
+            _context = contextFactory.GetDbContext<TDbContext>();
             _dbSet = _context.Set<TEntity>();
         }
 

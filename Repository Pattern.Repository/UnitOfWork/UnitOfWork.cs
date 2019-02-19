@@ -3,15 +3,19 @@ using System.Data.Entity;
 
 namespace Repository_Pattern.Repository
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<TDbContext> : IUnitOfWork
     {
         private DbContext _context { get; }
-        private DbContextTransaction _transaction { get; }
+        private DbContextTransaction _transaction { get; set; }
         private bool _disposed;
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(IDbContextFactory contextFactory)
         {
-            _context = context;
+            _context = contextFactory.GetDbContext<TDbContext>();
+        }
+
+        public void BeginTransaction()
+        {
             _transaction = _context.Database.BeginTransaction();
         }
 

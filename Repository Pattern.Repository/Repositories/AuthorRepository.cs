@@ -3,10 +3,10 @@ using System.Data.Entity;
 
 namespace Repository_Pattern.Repository
 {
-    public class AuthorRepository : GenericRepository<Author>, IAuthorRepository
+    public class AuthorRepository : GenericRepository<RepositoryPatternContext, Author>, IAuthorRepository
     {
-        public AuthorRepository(DbContext context)
-            : base(context)
+        public AuthorRepository(IDbContextFactory contextFactory)
+            : base(contextFactory)
         {
         }
     }
